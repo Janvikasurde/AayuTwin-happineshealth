@@ -1,0 +1,25 @@
+{
+  "name": "aayu-digital-twin",
+  "version": "2.4.0",
+  "description": "Multi-Scale Cardiometabolic Healthcare Digital Twin for the Indian Phenotype with Multi-Modal EHR-Wearable Fusion & Adverse Event Forecasting",
+  "main": "server.py",
+  "scripts": {
+    "start": "python server.py 8000",
+    "test": "python test_engine.py",
+    "generate-data": "python src/generate_data.py"
+  },
+  "keywords": [
+    "digital-twin",
+    "healthcare-ai",
+    "cardiometabolic",
+    "type-2-diabetes",
+    "indian-phenotype",
+    "wearable-fusion",
+    "cgm",
+    "abdm",
+    "fhir",
+    "happiest-health"
+  ],
+  "author": "Team AAYU (Happiest Health Digital Twin Challenge 2026)",
+  "license": "MIT"
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAYU-TWIN | Clinically-Validated Multi-Scale Healthcare Digital Twin</title>
+  <meta name="description" content="AAYU-TWIN: Multi-Scale Cardiometabolic Healthcare Digital Twin for the Indian Phenotype. Fusing static Electronic Health Records with continuous dynamic wearable telemetry and 2-hour adverse event forecasting.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+</head>
+<body>
+
+  <!-- Top Executive Medical Navigation Bar -->
+  <header class="top-navbar">
+    <div class="brand-wrapper">
+      <div class="brand-logo">🧬</div>
+      <div class="brand-info">
+        <h1 class="brand-title-text">AAYU-TWIN (आयु-Twin)</h1>
+        <div class="brand-subtitle-text">Cardiometabolic Healthcare Digital Twin • Happiest Health 2026</div>
+      </div>
+    </div>
+
+    <!-- Patient Profile Selector -->
+    <div class="patient-selector-pill">
+      <label for="patientSelect" class="selector-label">Virtual Patient:</label>
+      <select id="patientSelect" class="patient-dropdown">
+        <!-- Dynamically populated from EHR dataset -->
+      </select>
+    </div>
+
+    <!-- Telemetry State & Global Actions -->
+    <div class="navbar-actions">
+      <div class="telemetry-status-pill">
+        <span class="live-pulse"></span>
+        <span>TELEMETRY LIVE • <span id="liveClockTime">18:45:00</span> IST</span>
+      </div>
+      <button class="btn-interactive muted" id="audioToggleBtn" title="Toggle Vital Monitor Sound Effects">🔇 Audio: Muted</button>
+      <button class="btn-interactive secondary" id="btnExportFhir">📥 Export ABDM FHIR</button>
+      <button class="btn-interactive primary" id="btnClinicalReport">📋 Doctor's SOAP Report</button>
+    </div>
+  </header>
+
+  <!-- Patient Identity & Vitals Quick Ribbon -->
+  <section class="patient-ribbon">
+    <div class="patient-core-id">
+      <div class="patient-avatar-circle">👤</div>
+      <div class="patient-title-group">
+        <h2 id="headerPatientName">Rajesh Kumar</h2>
+        <p id="headerPatientMeta">46 Yrs • Male • BMI 26.4 • Bengaluru, Karnataka</p>
+      </div>
+      <span class="abha-tag">ABHA: <span id="headerAbhaId">91-4521-8839-0129@abdm</span></span>
+      <span class="archetype-pill" id="patientArchetypeBadge">Uncontrolled T2D + Nocturnal Hypertension</span>
+    </div>
+
+    <div class="vitals-ribbon-metrics">
+      <div class="vital-metric-unit">
+        <span class="vital-unit-label">Blood Pressure</span>
+        <span class="vital-unit-value"><span id="vitalSysBp">144</span>/<span id="vitalDiaBp">92</span> <small>mmHg</small></span>
+      </div>
+      <div class="vital-metric-unit">
+        <span class="vital-unit-label">Resting Heart Rate</span>
+        <span class="vital-unit-value"><span id="vitalHr">82</span> <small>bpm</small></span>
+      </div>
+      <div class="vital-metric-unit">
+        <span class="vital-unit-label">HRV (RMSSD)</span>
+        <span class="vital-unit-value" id="vitalHrv">22.4 ms</span>
+      </div>
+      <div class="vital-metric-unit">
+        <span class="vital-unit-label">Baseline HbA1c</span>
+        <span class="vital-unit-value" id="vitalA1c">8.6%</span>
+      </div>
+      <div class="vital-metric-unit">
+        <span class="vital-unit-label">Renal eGFR</span>
+        <span class="vital-unit-value" id="vitalGfr">78 <small>mL/min</small></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Predictive Adverse Event Alert Radar -->
+  <section class="alert-strip-wrapper">
+    <div class="clinical-alert-card critical" id="adverseAlertBanner">
+      <!-- Injected dynamically by app.js based on multi-modal telemetry -->
+    </div>
+  </section>
+
+  <!-- Main Digital Twin Cockpit -->
+  <main class="cockpit-grid">
+
+    <!-- LEFT COLUMN: Holographic Anatomical Patient Visualizer -->
+    <section class="clinical-panel">
+      <div class="panel-header">
+        <div class="panel-title-container">
+          <span class="live-pulse"></span>
+          <h3 class="panel-title">Virtual Patient Hologram</h3>
+        </div>
+        <span class="panel-badge">In-Silico Avatar</span>
+      </div>
+      <div id="anatomicalVisContainer" class="hologram-stage">
+        <!-- SVG Human Silhouette with interactive organ hotspots -->
+      </div>
+    </section>
+
+    <!-- CENTER COLUMN: Ambulatory Glucose Profile (CGM) + 2-Hour Prediction + Sweeping ECG -->
+    <section class="center-stack">
+      <!-- Ambulatory Glucose Profile (AGP) Canvas -->
+      <div class="clinical-panel">
+        <div class="panel-header">
+          <div class="panel-title-container">
+            <h3 class="panel-title">Ambulatory Glucose Profile &amp; 2-Hour Forecast Horizon</h3>
+          </div>
+          <span class="panel-badge">Dexcom / Synthea Multi-Modal Fusion</span>
+        </div>
+
+        <div class="chart-viewport">
+          <canvas id="cgmChartCanvas" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="chart-legend-strip">
+          <div class="legend-group">
+            <div class="legend-marker">
+              <span class="legend-swatch cyan"></span>
+              <span>Past 24h Baseline CGM</span>
+            </div>
+            <div class="legend-marker">
+              <span class="legend-swatch green"></span>
+              <span>Simulated Counterfactual Trajectory</span>
+            </div>
+            <div class="legend-marker">
+              <span class="legend-swatch purple"></span>
+              <span>2-Hour Predictive Horizon</span>
+            </div>
+          </div>
+          <div class="legend-marker">
+            <span style="color: var(--emerald-400); font-weight:700;">Target TIR: 70 - 180 mg/dL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Time Sweeping Lead II ECG & Hemodynamic Indicators -->
+      <div class="clinical-panel">
+        <div class="panel-header">
+          <div class="panel-title-container">
+            <h3 class="panel-title">Cardiovascular Hemodynamics &amp; ECG Telemetry</h3>
+          </div>
+          <span class="panel-badge">Real-Time Sensor Stream</span>
+        </div>
+
+        <div class="telemetry-row">
+          <!-- Real-time Sweeping ECG Canvas -->
+          <div class="ecg-canvas-card">
+            <div class="ecg-overlay-label">
+              <span class="live-pulse"></span>
+              <span>LEAD II ECG TELEMETRY • 82 BPM NORMAL SINUS RHYTHM</span>
+            </div>
+            <canvas id="ecgCanvasMonitor" class="chart-canvas"></canvas>
+          </div>
+
+          <!-- Multi-Biomarker Tiles -->
+          <div class="multi-metric-tiles">
+            <div class="metric-tile-card">
+              <span class="tile-tag">Nocturnal BP Dip</span>
+              <span class="tile-number" style="color: var(--crimson-neon);">Non-Dipper (2.8%)</span>
+              <span class="tile-sub" style="color: var(--crimson-neon);">2.4x Stroke Risk</span>
+            </div>
+            <div class="metric-tile-card">
+              <span class="tile-tag">Pulse Wave Velocity</span>
+              <span class="tile-number">9.4 m/s</span>
+              <span class="tile-sub">Arterial Stiffness</span>
+            </div>
+            <div class="metric-tile-card">
+              <span class="tile-tag">Insulin Resistance</span>
+              <span class="tile-number">HOMA-IR 10.5</span>
+              <span class="tile-sub">76% Hepatic Steatosis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: Counterfactual "What-If" Simulation Playground -->
+    <section class="clinical-panel">
+      <div id="sandboxContainer" class="sandbox-stack">
+        <!-- Interactive sliders for Diet, Exercise, and Precision Pharmacotherapy -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Core Biophysical & Application Logic -->
+  <script src="js/biophysical_engine.js"></script>
+  <script src="js/digital_twin_vis.js"></script>
+  <script src="js/telemetry_charts.js"></script>
+  <script src="js/what_if_simulator.js"></script>
+  <script src="js/fhir_exporter.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

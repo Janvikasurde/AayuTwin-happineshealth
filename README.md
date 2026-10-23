@@ -40,7 +40,7 @@
   2. **Biophysical Modeler & Mathematical Physicist**
   3. **Clinical Domain Specialist & Diabetology Researcher**
   4. **Health Data Privacy & ABDM Integration Engineer**
-* **Public GitHub Repository:** [https://github.com/janvikasurde/TeamAayu_Healthcare](https://github.com/your-username/TeamAayu_Healthcare)
+* **Public GitHub Repository:** [https://github.com/Janvikasurde/AayuTwin-happineshealth]
 
 ---
 

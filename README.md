@@ -31,17 +31,16 @@
 ## 1. Team Details & College/Incubator Information
 
 * **Team Name:** `Team AAYU` (Submission Folder: `TeamAayu_Healthcare`)
-* **College / Incubator / University:** Healthcare AI & Bio-Engineering Center / SINE IIT Bombay *(Customizable to your institution)*
+* **College / Incubator / University:** Arvind Gavali College of Engineering Satara
 * **Team Leader Information:**
-  * **Full Name:** Team Leader Name
-  * **Phone Number:** `+91-9876543210` *(Update with your active contact)*
-  * **Email ID:** `lead@aayutwin.health` *(Update with your email)*
-* **Team Members:**
+  * **Full Name:** Janvi Atul Kasurde
+  * **Phone Number:** +91-7720072518
+  * **Email ID:** janvhikasurde54@gmail.com
   1. **Lead AI Architect & Full-Stack Developer**
   2. **Biophysical Modeler & Mathematical Physicist**
   3. **Clinical Domain Specialist & Diabetology Researcher**
   4. **Health Data Privacy & ABDM Integration Engineer**
-* **Public GitHub Repository:** [https://github.com/your-username/TeamAayu_Healthcare](https://github.com/your-username/TeamAayu_Healthcare)
+* **Public GitHub Repository:** [https://github.com/janvikasurde/TeamAayu_Healthcare](https://github.com/your-username/TeamAayu_Healthcare)
 
 ---
 
